@@ -1,0 +1,62 @@
+#
+# Michael Hardy
+# mbhardy@ucsc.edu
+# 12%l
+# %d
+# 
+# Makefile
+# Makefile for project
+
+MAINCLASS	= %C
+JAVASRC		= $(MAINCLASS).java%j
+SOURCES		= README Makefile $(JAVASRC)
+CLASSES		= $(MAINCLASS).class%c
+JARFILE		= $(MAINCLASS)
+CLASS		= cmps012b-pt.w18
+ASSIGNMENT	= %a
+ID			= mbhardy
+
+build: 
+	#builds by default
+	javac $(JAVASRC)
+	echo Main-class: $(MAINCLASS) > Manifest
+	jar cvfm $(JARFILE) Manifest $(CLASSES)
+	rm Manifest
+	chmod +x $(JARFILE)
+
+clean:
+	rm $(CLASSES) $(JARFILE)
+
+build_clean: clean build
+
+submit: $(SOURCES)
+	submit $(CLASS) $(ASSIGNMENT) $(SOURCES)
+
+check:
+	# The \
+	# is to ensure commands are executed with the same environment
+	# cd into hw directory (Comment out for local check) \
+	cd /afs/cats.ucsc.edu/class/$(CLASS)/$(ASSIGNMENT)/$(ID); \
+	# parts of the code below are based on: \
+	# https://stackoverflow.com/questions/1406966/linux-shell-script-split-string-put-them-in-an-array-then-loop-through-them \
+	# \
+	# set internal field separator to iterate sources by space \
+	IFS=" "; \
+	list="$(SOURCES)"; \
+	fail=false; \
+	# Iterate sources \
+	for source in $$list; do \
+		# Do we have it? \
+		find . -name "*_$$source"; \
+		if [ "$?" = '0' ]; then \
+			# No \
+			fail=true; \
+			echo "SUBMISSION ERROR: $$source missing"; \
+		fi; \
+	done; \
+	if !($$fail); then \
+		echo "Successfuly submitted"; \
+	fi;
+
+sub_check: submit check
+

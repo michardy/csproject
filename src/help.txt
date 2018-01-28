@@ -1,0 +1,5 @@
+Usage:
+	csproject <command>
+	commands:
+		java creates Java project
+		c creates C project
