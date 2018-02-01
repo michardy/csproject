@@ -9,7 +9,7 @@
 
 MAIN		= %m
 SOURCES		= $(MAIN).c%s
-SUBMIT		= README Makefile $(FILES)
+SUBMIT		= README Makefile $(SOURCES)
 OBJECTS		= $(MAIN).O%o
 CLASS		= cmps012b-pt.w18
 ASSIGNMENT	= %a
