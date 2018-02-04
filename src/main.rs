@@ -282,7 +282,7 @@ fn init_java() {
 		f.write_java();
 	}
 	Command::new("git")
-		.args(&["add", "."])
+		.args(&["add", &dirs[1]])
 		.output()
 		.expect("Error adding files to git");
 	Command::new("geany")
@@ -357,7 +357,7 @@ fn init_c() {
 		f.write_c();
 	}
 	Command::new("git")
-		.args(&["add", "."])
+		.args(&["add", &dirs[1]])
 		.output()
 		.expect("Error adding files to git");
 	Command::new("geany")
