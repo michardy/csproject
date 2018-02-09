@@ -24,12 +24,12 @@ $(OBJECTS) : $(SOURCES)
 	gcc -c -std=c99 -Wall $(SOURCES)
 
 clean :
-	rm-f $(MAIN) $(OBJECTS)
+	rm -f $(MAIN) $(OBJECTS)
 
 build_clean: clean build
 
-submit: $(SOURCES)
-	submit $(CLASS) $(ASSIGNMENT) $(SOURCES)
+submit: $(SUBMIT)
+	submit $(CLASS) $(ASSIGNMENT) $(SUBMIT)
 
 check:
 	# The \

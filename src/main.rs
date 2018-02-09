@@ -89,7 +89,7 @@ impl MakeFile {
 		}
 		for n in names {
 			if n.name != main {
-				classes += &(String::from(" ") + &n.name + ".java");
+				classes += &(String::from(" ") + &n.name + ".class");
 			}
 		}
 		MakeFile {
@@ -246,7 +246,7 @@ fn init_java() {
 			classes_desc.push(uin.clone());
 		}
 	}
-	let dirs: [String; 2] = create_project(&main_c);
+	let dirs: [String; 2] = create_project(&assign);
 	files.push(TemplatedFile {
 		name: main_c.clone(),
 		desc: main_d,
@@ -321,7 +321,7 @@ fn init_c() {
 			libs_desc.push(uin.clone());
 		}
 	}
-	let dirs: [String; 2] = create_project(&main_c);
+	let dirs: [String; 2] = create_project(&assign);
 	files.push(TemplatedFile {
 		name: main_c.clone(),
 		desc: main_d,
